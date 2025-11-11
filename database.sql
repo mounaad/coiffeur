@@ -50,3 +50,7 @@ CREATE TABLE fidelite (
     reduction_applicable DECIMAL(5,2) DEFAULT 0,
     FOREIGN KEY (id_client) REFERENCES client(id_client) ON DELETE CASCADE
 );
+
+INSERT INTO admin(username, mot_de_passe) VALUES('admin1','1234');
+
+INSERT INTO client(nom,prenom,email,mot_de_passe) VALUES('first','client','client1@example.com','1234');
