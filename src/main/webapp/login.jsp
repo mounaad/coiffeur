@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <!-- En-tête -->
+    <!-- header -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -28,7 +28,7 @@
         </div>
     </header>
 
-    <!-- Section de connexion -->
+    <!-- connexion -->
     <section class="login-section">
         <div class="container" >
             <div class="login-container">
@@ -60,7 +60,7 @@
         </div>
     </section>
 
-    <!-- Pied de page -->
+    <!-- footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -80,14 +80,14 @@
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul>
-                        <li>Email: contact@coiffure-elegance.fr</li>
-                        <li>Téléphone: 01 23 45 67 89</li>
-                        <li>Adresse: 123 Avenue de la Beauté, Paris</li>
+                        <li>Email: contact@example.com</li>
+                        <li>Téléphone: 00 00 00 00 00 </li>
+                        <li>Adresse: 123 Avenue de la Beauté, Rabat</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Coiffure Élégance. Tous droits réservés.</p>
+                <p>&copy; 2025 Coiffure Élégance. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
