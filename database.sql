@@ -54,3 +54,35 @@ CREATE TABLE fidelite (
 INSERT INTO admin(username, mot_de_passe) VALUES('admin1','1234');
 
 INSERT INTO client(nom,prenom,email,mot_de_passe) VALUES('first','client','client1@example.com','1234');
+
+
+INSERT INTO coiffeur(nom,email,mot_de_passe,statut) VALUES('coiff','coiff@example.com','1234','valide');
+
+-- modif
+USE coiffdb;
+
+ALTER TABLE coiffeur
+DROP COLUMN horaires,
+ADD COLUMN telephone VARCHAR(20) AFTER email,
+ADD COLUMN services VARCHAR(255) AFTER telephone;
+
+
+ALTER TABLE fidelite
+ADD COLUMN source ENUM('rendezvous','anniversaire','autre') DEFAULT 'rendezvous' AFTER reduction_applicable,
+ADD COLUMN date_operation DATE DEFAULT CURRENT_DATE AFTER source,
+ADD COLUMN description VARCHAR(255) AFTER date_operation;
+
+
+CREATE TABLE planning (
+    id_planning INT AUTO_INCREMENT PRIMARY KEY,
+    id_coiffeur INT,
+    date_disponibilite DATE,
+    heure_debut TIME,
+    heure_fin TIME,
+    statut ENUM('disponible','reserve','bloque') DEFAULT 'disponible',
+    FOREIGN KEY (id_coiffeur) REFERENCES coiffeur(id_coiffeur) ON DELETE CASCADE
+);
+
+
+
+
