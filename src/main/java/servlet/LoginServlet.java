@@ -50,20 +50,21 @@ public class LoginServlet extends HttpServlet {
 	     try {  
 	            AuthDao authDao = new AuthDao(Factory.getInstance());
 	            User user = authDao.login(usernameOrEmail, password);
-	            if(user != null) {
+	            if(user != null) { 
 	                request.getSession().setAttribute("user", user);
 
 	                // Redirection selon rôle
 	                switch(user.getRole()) {
 	                    case "admin":
-	                        response.sendRedirect(request.getContextPath() + "/admin/dashboard.jsp");
+	                        response.sendRedirect(request.getContextPath() + "/admin/dashboard");
 	                        break;
 	                    case "coiffeur":
-	                        response.sendRedirect(request.getContextPath() + "/coiffeur/dashboard.jsp");
+	                        response.sendRedirect(request.getContextPath() + "/coiffeur/dashboard");
 	                        break;
 	                    case "client":
-	                    	
-	                        response.sendRedirect(request.getContextPath() + "/client/dashboard.jsp");
+
+	                        response.sendRedirect(request.getContextPath() + "/client/dashboard");
+
 	                        break;
 	                }
 	            } else {
