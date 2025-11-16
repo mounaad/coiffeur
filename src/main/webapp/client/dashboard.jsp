@@ -8,12 +8,6 @@
 <title>Dashboard</title>
 </head>
 <body>
-<%
-    User user = (User) session.getAttribute("user");
-    if(user == null || !"client".equals(user.getRole())) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
-        return;
-    }
-%>
+
 </body>
 </html>

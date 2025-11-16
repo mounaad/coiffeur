@@ -21,7 +21,7 @@ public class AuthDao {
             pst.setString(1, usernameOrEmail);
             pst.setString(2, password);
             try (ResultSet rs = pst.executeQuery()) {
-                if (rs.next()) {
+                if (rs.next()) { 
                     return new User(rs.getInt("id_admin"), rs.getString("username"), "admin");
                 }
             }
