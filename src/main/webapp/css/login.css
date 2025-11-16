@@ -16,7 +16,9 @@
 }
 
 body {
-    background-color: var(--light-beige);
+    background: linear-gradient(rgba(214, 200, 189, 0.9), rgba(214, 200, 189, 0.9)), 
+                    url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
     color: var(--dark-brown);
     line-height: 1.6;
     display: flex;
@@ -89,13 +91,16 @@ nav ul li a:hover {
     background-color: var(--medium-brown);
 }
 
-/* Section de connexion */
 .login-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    padding: 40px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        padding: 40px 0;
+        background: linear-gradient(rgba(214, 200, 189, 0.9), rgba(214, 200, 189, 0.9)), 
+                    url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;
 }
 
 .login-container {

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <!-- header -->
+    <!-- En-tête -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -22,13 +22,24 @@
                     </ul>
                 </nav>
                 <div class="auth-buttons">
-                    <a href="#">Inscription</a>
+                    <a href="register.jsp">Inscription</a>
                 </div>
             </div>
         </div>
     </header>
+    <%
+    String success = (String) session.getAttribute("success");
+    if (success != null) {
+	%>
+        <div style="color: #80EF80 ; font-weight: bold;font-size: 24px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0 auto;">
+            <%= success %>
+        </div>
+<%
+        session.removeAttribute("success"); // éviter qu'il reste affiché
+    }
+%>
 
-    <!-- connexion -->
+    <!-- Section de connexion -->
     <section class="login-section">
         <div class="container" >
             <div class="login-container">
@@ -54,13 +65,13 @@
                 </form>
                 
                 <div class="register-link">
-                    <p>Pas encore de compte ? <a href="#">Inscrivez-vous ici</a></p>
+                    <p>Pas encore de compte ? <a href="register.jsp">Inscrivez-vous ici</a></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- footer -->
+    <!-- Pied de page -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -80,7 +91,7 @@
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul>
-                        <li>Email: contact@example.com</li>
+                       <li>Email: contact@example.com</li>
                         <li>Téléphone: 00 00 00 00 00 </li>
                         <li>Adresse: 123 Avenue de la Beauté, Rabat</li>
                     </ul>
