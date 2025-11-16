@@ -44,6 +44,32 @@ public class ClientDaoImp implements ClientDao {
         }
         return false;
     }
+
+    public Client getClientById(int id) {
+        Client client = null;
+        String sql = "SELECT * FROM client WHERE id_client = ?";
+
+        try (Connection conn = Factory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                client = new Client(
+                    rs.getString("nom"),
+                    rs.getString("prenom"),
+                    rs.getString("email"),
+                    rs.getString("telephone"),
+                    rs.getString("mot_de_passe")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return client;
+    }
+
 	
 
 }

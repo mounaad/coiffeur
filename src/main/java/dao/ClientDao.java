@@ -7,5 +7,6 @@ public interface ClientDao {
 	
 	public boolean emailExiste(String email);
 
+	public Client getClientById(int id);
 
 }

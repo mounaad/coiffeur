@@ -84,5 +84,40 @@ CREATE TABLE planning (
 );
 
 
+CREATE TABLE service (
+    id_service INT AUTO_INCREMENT PRIMARY KEY,
+    nom_service VARCHAR(100) NOT NULL,
+    description VARCHAR(255),
+    duree INT NOT NULL,
+    prix DOUBLE NOT NULL
+);
+
+CREATE TABLE coiffeur_service (
+id_coiffeur INT,
+id_service INT,
+PRIMARY KEY (id_coiffeur, id_service),
+FOREIGN KEY (id_coiffeur) REFERENCES coiffeur(id_coiffeur),
+FOREIGN KEY (id_service) REFERENCES service(id_service)
+);
+
+
+INSERT INTO service (nom_service, description, duree, prix) VALUES
+('Coupe Femme', 'Coupe moderne ou classique, brushing inclus.', 45, 80),
+('Coloration', 'Coloration complète avec produits professionnels.', 90, 150),
+('Meches / Balayage', 'Éclaircissement partiel ou total selon la demande.', 120, 200),
+('Soin Capillaire', 'Masque nourrissant, hydratation profonde.', 30, 40),
+('Brushing', 'Brushing lisse ou wavy – cheveux courts à longs.', 40, 60),
+('Lissage', 'Lissage permanent ou brésilien selon le type de cheveux.', 180, 300);
+
+
+ALTER TABLE service ADD photo VARCHAR(255);
+
+
+UPDATE service SET photo='https://images.unsplash.com/photo-1506956191960-72d2d02e7b82' WHERE nom_service='Coupe Femme';
+UPDATE service SET photo='https://images.unsplash.com/photo-1503951914875-452162b0f3f1' WHERE nom_service='Coloration';
+UPDATE service SET photo='https://images.unsplash.com/photo-1519741347686-c1e0da47d234' WHERE nom_service='Meches / Balayage';
+UPDATE service SET photo='https://images.unsplash.com/photo-1616394584738-f4cfaf77a3d5' WHERE nom_service='Soin Capillaire';
+UPDATE service SET photo='https://images.unsplash.com/photo-1600431521340-491eca880813' WHERE nom_service='Brushing';
+UPDATE service SET photo='https://images.unsplash.com/photo-1505693416388-ac5ce068fe85' WHERE nom_service='Lissage';
 
 

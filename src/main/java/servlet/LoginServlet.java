@@ -1,4 +1,4 @@
-package servlet;
+ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.AuthDao;
+import dao.ClientDaoImp;
 import dao.Factory;
+import model.Client;
 import model.User;
 
 /**
@@ -60,6 +62,7 @@ public class LoginServlet extends HttpServlet {
 	                        response.sendRedirect(request.getContextPath() + "/coiffeur/dashboard.jsp");
 	                        break;
 	                    case "client":
+	                    	
 	                        response.sendRedirect(request.getContextPath() + "/client/dashboard.jsp");
 	                        break;
 	                }
