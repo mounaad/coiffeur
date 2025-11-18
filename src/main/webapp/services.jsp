@@ -6,11 +6,10 @@
 <%@ page import="dao.Factory" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
-<% // Récupérer la liste des services
-ServiceDaoImp serviceDao = new ServiceDaoImp(new Connection());
-List<Service> services = serviceDao.getAllServices();
+<%
+    List<Service> services = (List<Service>) request.getAttribute("services");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +34,6 @@ List<Service> services = serviceDao.getAllServices();
                     <span style="color: var(--light-beige); margin-right: 15px;">
                         <i class="fas fa-bell"></i> <span class="notification-badge">2</span>
                     </span>
-                    <a href="${pageContext.request.contextPath}/logout">Déconnexion</a>
                 </div>
             </div>
         </div>
@@ -49,16 +47,32 @@ List<Service> services = serviceDao.getAllServices();
                     <h2 class="card-title">Nos services disponibles</h2>
                 </div>
                 <div class="services-grid">
-                    <c:forEach var="s" items="${services}">
-    <tr>
-        <td>${s.id}</td>
-        <td>${s.nom}</td>
-        <td>${s.prix}</td>
-    </tr>
-</c:forEach>
+    <c:forEach var="s" items="${services}">
+        <div class="service-card">
+            <img src="${s.getPhoto}" alt="image service" style="width:120px;border-radius:10px;">
+
+            <h3 class="service-name">${s.getNom}</h3>
+
+            <p class="service-duration">
+                <i class="fas fa-clock"></i> ${s.getDuree} minutes
+            </p>
+
+            <div class="service-price">${s.getPrix} €</div>
+
+            <p style="color: var(--medium-brown); font-size: 14px; margin-bottom: 15px;">
+                ${s.getDescription}
+            </p>
+
+            <a href="reservation.jsp?serviceId=${s.getId}" class="btn btn-primary">
+                <i class="fas fa-calendar-check"></i> Réserver
+            </a>
+        </div>
+    </c:forEach>
+</div>
+
                 </div>
             </div>
-            </div>
+            
             </section>
             
 <!-- Pied de page -->

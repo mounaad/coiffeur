@@ -53,5 +53,22 @@ public class RendezVousDaoImpl implements RendezVousDao {
         ps.setInt(1, idRdv);
         ps.executeUpdate();
     }
+    
+    public boolean addRendezvous(RendezVous rdv) {
+        String sql = "INSERT INTO rendezvous (id_client, id_service, date_rdv, heure_rdv, statut) VALUES (?,?,?,?,?)";
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, rdv.getIdClient());
+            ps.setInt(2, rdv.getIdService());
+            ps.setDate(3, rdv.getDate());
+            ps.setTime(4, rdv.getHeure());
+            ps.setString(5, rdv.getStatut());
+
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }

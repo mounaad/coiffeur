@@ -14,4 +14,6 @@ public interface RendezVousDao {
 
    
     void annulerRdv(int idRdv) throws SQLException;
+    
+    public boolean addRendezvous(RendezVous rdv);
 }

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.Factory;
 import dao.ServiceDaoImp;
@@ -16,7 +18,7 @@ import model.Service;
 /**
  * Servlet implementation class ServicesServlet
  */
-@WebServlet("/ServicesServlet")
+@WebServlet("/Services")
 public class ServicesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,19 +35,21 @@ public class ServicesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		
-		 try {
-	            ServiceDaoImp dao = new ServiceDaoImp(Factory.getConnection());
+		
+		 try (Connection conn = Factory.getConnection()) {
+	            ServiceDaoImp dao = new ServiceDaoImp(conn);
 	            List<Service> services = dao.getAllServices();
 
 	            request.setAttribute("services", services);
 	            request.getRequestDispatcher("/services.jsp").forward(request, response);
-
+	            
+	            
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
+		 
 	}
 
 	/**
@@ -53,6 +57,9 @@ public class ServicesServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		response.sendRedirect(request.getContextPath() + "/Services");
+		
 		doGet(request, response);
 	}
 

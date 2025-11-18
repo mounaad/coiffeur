@@ -105,10 +105,9 @@
                 
             </div>
             <div class="dashboard-card">
-			<a href="services.jsp" class="btn btn-primary">
-			    Voir tous les services
-			</a></div>
-			            
+<a href="${pageContext.request.contextPath}/Services" class="btn btn-primary mt-3">
+    Voir les Services
+</a>			            
             <!-- Historique des rendez-vous -->
             <div class="dashboard-card">
                 <div class="card-header">
