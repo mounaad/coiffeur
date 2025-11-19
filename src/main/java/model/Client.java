@@ -7,7 +7,8 @@ public class Client {
     private String email;
     private String telephone;
     private String mot_de_passe;
-    private int points_fidelite;
+    private int pointsFidelite;
+    private double reduction;
     
     public Client() {}
     
@@ -17,7 +18,7 @@ public class Client {
         this.email = email;
         this.telephone = telephone;
         this.mot_de_passe = motDePasse;
-        this.points_fidelite = 0;
+       
     }
 
     // Getters et Setters
@@ -62,12 +63,12 @@ public class Client {
     public void setMotDePasse(String mot_de_passe) { 
     	this.mot_de_passe = mot_de_passe; 
    	}
+    public int getPointsFidelite() { return pointsFidelite; }
+    public void setPointsFidelite(int pointsFidelite) { this.pointsFidelite = pointsFidelite; }
+
+    public double getReduction() { return reduction; }
+    public void setReduction(double reduction) { this.reduction = reduction; }
     
-    public int getPointsFidelite() { 
-    	return points_fidelite; 
-    }
-    public void setPointsFidelite(int points_fidelite) { 
-    	this.points_fidelite = points_fidelite; 
-    }
+   
 
 }

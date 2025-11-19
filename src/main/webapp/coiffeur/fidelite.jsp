@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.User" %>
-<%@ page import="model.RendezVous" %>
-<%@ page import="dao.CoiffeurDaoImpl" %>
-<%@ page import="model.Coiffeur" %>
+<%@ page import="dao.FideliteDaoImpl" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Dashboard Coiffeur</title>
+<title>Points de Fidélité</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <style>
     /* Layout avec sidebar */
@@ -26,8 +23,6 @@
         color: var(--light-beige);
         padding: 0;
     }
-    
-  
     
     .sidebar-menu {
         list-style: none;
@@ -92,8 +87,8 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     
-    /* Section des rendez-vous */
-    .rdv-section {
+    /* Section fidélité */
+    .fidelite-section {
         background: white;
         border-radius: 8px;
         padding: 0;
@@ -111,14 +106,14 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     
-    /* Tableau des rendez-vous */
-    .rdv-table {
+    /* Tableau fidélité */
+    .fidelite-table {
         width: 100%;
         border-collapse: collapse;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     
-    .rdv-table th {
+    .fidelite-table th {
         background-color: #f8f9fa;
         color: var(--dark-brown);
         padding: 18px 25px;
@@ -128,88 +123,68 @@
         font-size: 0.95em;
     }
     
-    .rdv-table td {
+    .fidelite-table td {
         padding: 18px 25px;
         border-bottom: 1px solid #e9ecef;
         color: var(--dark-brown);
         font-size: 0.95em;
     }
     
-    .rdv-table tr:last-child td {
+    .fidelite-table tr:last-child td {
         border-bottom: none;
     }
     
-    .rdv-table tr:hover {
+    .fidelite-table tr:hover {
         background-color: rgba(214, 200, 189, 0.08);
     }
     
-    /* Statuts */
-    .statut {
+    /* Points */
+    .points-badge {
         padding: 8px 16px;
-        border-radius: 4px;
+        border-radius: 20px;
         font-size: 0.9em;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        font-weight: 600;
+        display: inline-block;
     }
     
-    .statut-en_attente {
+    .points-faible {
         background: #fff3cd;
         color: #856404;
         border: 1px solid #ffeaa7;
     }
     
-    .statut-confirme {
+    .points-moyen {
+        background: #d1edff;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+    }
+    
+    .points-eleve {
         background: #d4edda;
         color: #155724;
         border: 1px solid #c3e6cb;
     }
     
-    .statut-annule {
+    /* Statut réduction */
+    .reduction-badge {
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 0.85em;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .reduction-oui {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+    
+    .reduction-non {
         background: #f8d7da;
         color: #721c24;
         border: 1px solid #f5c6cb;
-    }
-    
-    /* Actions */
-    .action-buttons {
-        display: flex;
-        gap: 10px;
-    }
-    
-    .btn {
-        padding: 8px 16px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 0.85em;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    .btn-confirm {
-        background: #28a745;
-        color: white;
-    }
-    
-    .btn-cancel {
-        background: #dc3545;
-        color: white;
-    }
-    
-    .btn-confirm:hover {
-        background: #218838;
-    }
-    
-    .btn-cancel:hover {
-        background: #c82333;
-    }
-    
-    .no-action {
-        color: #6c757d;
-        font-style: italic;
-        font-size: 0.9em;
     }
     
     /* Message vide */
@@ -226,15 +201,6 @@
         font-weight: 500;
     }
     
-    /* Footer simple */
-    .simple-footer {
-        background: var(--dark-brown);
-        color: var(--light-beige);
-        text-align: center;
-        padding: 20px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
     /* Responsive */
     @media (max-width: 768px) {
         .dashboard-layout {
@@ -249,11 +215,7 @@
             padding: 20px;
         }
         
-        .action-buttons {
-            flex-direction: column;
-        }
-        
-        .rdv-table {
+        .fidelite-table {
             display: block;
             overflow-x: auto;
         }
@@ -278,15 +240,14 @@
     <div class="dashboard-layout">
         <!-- Sidebar -->
         <aside class="sidebar">
-
             <ul class="sidebar-menu">
                 <li>
-                    <a href="${pageContext.request.contextPath}/coiffeur/dashboard" class="active">
+                    <a href="${pageContext.request.contextPath}/coiffeur/dashboard">
                         Rendez-vous
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/coiffeur/fidelite">
+                    <a href="${pageContext.request.contextPath}/coiffeur/fidelite" class="active">
                         Points de Fidélité
                     </a>
                 </li>
@@ -302,71 +263,49 @@
         <main class="main-content">
             <!-- En-tête de page -->
             <div class="page-header">
-                <h1>Liste des Rendez-vous</h1>
+                <h1>Points de Fidélité des Clients</h1>
             </div>
 
-            <!-- Liste des rendez-vous -->
-            <div class="rdv-section">
-                <h3 class="section-title">Rendez-vous</h3>
+            <!-- Section fidélité -->
+            <div class="fidelite-section">
+                <h3 class="section-title">Programme de Fidélité</h3>
                 
                 <c:choose>
-                    <c:when test="${not empty rdvs}">
-                        <table class="rdv-table">
+                    <c:when test="${not empty listeFidelite}">
+                        <table class="fidelite-table">
                             <thead>
                                 <tr>
                                     <th>Client</th>
-                                    <th>Date</th>
-                                    <th>Heure</th>
-                                    <th>Service</th>
-                                    <th>Prix</th>
-                                    <th>Statut</th>
-                                    <th>Actions</th>
+                                    <th>Points</th>
+                                    <th>Réduction active</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="rdv" items="${rdvs}">
+                                <c:forEach var="c" items="${listeFidelite}">
                                     <tr>
                                         <td>
-                                            <strong>${rdv.nomClient} ${rdv.prenomClient}</strong>
+                                            <strong>${c.nom} ${c.prenom}</strong>
                                         </td>
-                                        <td>${rdv.dateRdv}</td>
-                                        <td>${rdv.heureRdv}</td>
-                                        <td>${rdv.nomService}</td>
-                                        <td>${rdv.prix} MAD</td>
                                         <td>
                                             <c:choose>
-                                                <c:when test="${rdv.statut == 'en_attente'}">
-                                                    <span class="statut statut-en_attente">En attente</span>
+                                                <c:when test="${c.pointsFidelite >= 100}">
+                                                    <span class="points-badge points-eleve">${c.pointsFidelite} pts</span>
                                                 </c:when>
-                                                <c:when test="${rdv.statut == 'confirme'}">
-                                                    <span class="statut statut-confirme">Confirmé</span>
+                                                <c:when test="${c.pointsFidelite >= 50}">
+                                                    <span class="points-badge points-moyen">${c.pointsFidelite} pts</span>
                                                 </c:when>
-                                                <c:when test="${rdv.statut == 'annule'}">
-                                                    <span class="statut statut-annule">Annulé</span>
-                                                </c:when>
+                                                <c:otherwise>
+                                                    <span class="points-badge points-faible">${c.pointsFidelite} pts</span>
+                                                </c:otherwise>
                                             </c:choose>
                                         </td>
                                         <td>
                                             <c:choose>
-                                                <c:when test="${rdv.statut == 'en_attente'}">
-                                                    <div class="action-buttons">
-                                                        <form method="post" style="display:inline">
-                                                            <input type="hidden" name="idRdv" value="${rdv.idRdv}"/>
-                                                            <input type="hidden" name="idClient" value="${rdv.idClient}">
-                                                            <button type="submit" name="action" value="confirme" class="btn btn-confirm">
-                                                                Confirmer
-                                                            </button>
-                                                        </form>
-                                                        <form method="post" style="display:inline">
-                                                            <input type="hidden" name="idRdv" value="${rdv.idRdv}"/>
-                                                            <button type="submit" name="action" value="annule" class="btn btn-cancel">
-                                                                Annuler
-                                                            </button>
-                                                        </form>
-                                                    </div>
+                                                <c:when test="${c.reduction > 0}">
+                                                    <span class="reduction-badge reduction-oui">Oui</span>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <span class="no-action">Aucune action</span>
+                                                    <span class="reduction-badge reduction-non">Non</span>
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>
@@ -377,14 +316,13 @@
                     </c:when>
                     <c:otherwise>
                         <div class="no-data">
-                            <h3>Aucun rendez-vous pour le moment</h3>
+                            <h3>Aucun client dans le programme de fidélité</h3>
+                            <p>Les points de fidélité de vos clients apparaîtront ici.</p>
                         </div>
                     </c:otherwise>
                 </c:choose>
             </div>
         </main>
     </div>
-
-    
 </body>
 </html>

@@ -1,10 +1,21 @@
 package dao;
 
+import java.util.List;
+
 import model.Coiffeur;
 
 public interface CoiffeurDao {
 
-	 Coiffeur getCoiffeurByEmailAndPassword(String email, String password);
+	
+	 Coiffeur getCoiffeurById(int id);
+	 
+	 List<Coiffeur> getAll();
 
-	    Coiffeur getCoiffeurById(int id);
+	 boolean add(Coiffeur c);
+
+	 boolean update(Coiffeur c);
+
+     boolean delete(int id);
+	    
+	  
 }
