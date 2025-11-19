@@ -26,6 +26,14 @@ public class Coiffeur {
     public int getIdCoiffeur() {
         return idCoiffeur;
     }
+    
+    public int getId() {
+        return idCoiffeur;
+    }
+
+    public void setId(int id) {
+        this.idCoiffeur = id;
+    }
 
     public void setIdCoiffeur(int idCoiffeur) {
         this.idCoiffeur = idCoiffeur;

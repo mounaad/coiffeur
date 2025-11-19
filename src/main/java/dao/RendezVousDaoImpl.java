@@ -17,9 +17,15 @@ public class RendezVousDaoImpl implements RendezVousDao {
     @Override
     public List<RendezVous> getRendezVousByCoiffeur(int idCoiffeur) throws SQLException {
         List<RendezVous> rdvs = new ArrayList<>();
-        String sql = "SELECT r.id_rdv, r.id_client, r.id_coiffeur, r.date_rdv, r.heure_rdv, r.statut, c.nom, c.prenom " +
-                     "FROM rendezvous r JOIN client c ON r.id_client = c.id_client " +
-                     "WHERE r.id_coiffeur = ? ORDER BY r.date_rdv, r.heure_rdv";
+        String sql = "SELECT r.id_rdv, r.id_client, r.id_coiffeur, \r\n"
+        		+ "                     r.date_rdv, r.heure_rdv, r.statut,\r\n"
+        		+ "                     c.nom, c.prenom,\r\n"
+        		+ "                     s.id_service, s.nom_service, s.prix\r\n"
+        		+ "              FROM rendezvous r\r\n"
+        		+ "              JOIN client c ON r.id_client = c.id_client\r\n"
+        		+ "              JOIN service s ON r.id_service = s.id_service\r\n"
+        		+ "              WHERE r.id_coiffeur = ?\r\n"
+        		+ "              ORDER BY r.date_rdv, r.heure_rdv";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, idCoiffeur);
         ResultSet rs = ps.executeQuery();
@@ -32,7 +38,10 @@ public class RendezVousDaoImpl implements RendezVousDao {
                 rs.getTime("heure_rdv"),
                 rs.getString("statut"),
                 rs.getString("nom"),
-                rs.getString("prenom")
+                rs.getString("prenom"),
+                rs.getInt("id_service"),
+                rs.getString("nom_service"),
+                rs.getDouble("prix")
             ));
         } 
         return rdvs;
@@ -60,8 +69,8 @@ public class RendezVousDaoImpl implements RendezVousDao {
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, rdv.getIdClient());
             ps.setInt(2, rdv.getIdService());
-            ps.setDate(3, rdv.getDate());
-            ps.setTime(4, rdv.getHeure());
+            ps.setDate(3, rdv.getDateRdv());
+            ps.setTime(4, rdv.getHeureRdv());
             ps.setString(5, rdv.getStatut());
 
             return ps.executeUpdate() > 0;

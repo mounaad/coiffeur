@@ -40,7 +40,6 @@
                 <nav>
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/index">Accueil</a></li>
-                        <li><a href="${pageContext.request.contextPath}/salons">Salons</a></li>
                         <li><a href="${pageContext.request.contextPath}/services">Services</a></li>
                         <li><a href="${pageContext.request.contextPath}/dashboard" class="active">Mon Compte</a></li>
                     </ul>
@@ -65,9 +64,12 @@
             </div>
 
             <!-- Gros bouton Prendre RDV -->
-            <a href="#services" class="big-cta-button">
+            <a href="<%= request.getContextPath() %>/ReservationServlet" class="big-cta-button">
                 <i class="fas fa-calendar-plus"></i> PRENDRE UN RENDEZ-VOUS
             </a>
+            <a href="<%= request.getContextPath() %>/Services" class="big-cta-button">
+ 		   VOIR LES SERVICES 
+			</a>
 
             <!-- Grille principale -->
             <div class="dashboard-grid">
@@ -104,59 +106,9 @@
 
                 
             </div>
-            <div class="dashboard-card">
-<a href="${pageContext.request.contextPath}/Services" class="btn btn-primary mt-3">
-    Voir les Services
-</a>			            
-            <!-- Historique des rendez-vous -->
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <div class="card-icon"><i class="fas fa-history"></i></div>
-                    <h2 class="card-title">Historique des rendez-vous</h2>
-                </div>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Service</th>
-                            <th>Coiffeur</th>
-                            <th>Prix</th>
-                            <th>Statut</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="5" class="empty-state">
-                                <i class="fas fa-history"></i>
-                                <p>Aucun rendez-vous dans l'historique</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            
             </div>
-
-            <!-- Actions rapides -->
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <div class="card-icon"><i class="fas fa-bolt"></i></div>
-                    <h2 class="card-title">Actions rapides</h2>
-                </div>
-                <div class="quick-actions">
-                    <a href="#services" class="action-btn">
-                        <i class="fas fa-calendar-plus"></i> Prendre rendez-vous
-                    </a>
-                    <a href="${pageContext.request.contextPath}/salons" class="action-btn">
-                        <i class="fas fa-store"></i> Explorer les salons
-                    </a>
-                    <a href="ModifierProfilServlet" class="action-btn">
-                        <i class="fas fa-user-edit"></i> Modifier mon profil
-                    </a>
-                    <a href="${pageContext.request.contextPath}/notifications" class="action-btn">
-                        <i class="fas fa-bell"></i> Mes notifications
-                    </a>
-                </div>
-            </div>
-        </div>
+        
     </section>
 
     <!-- Pied de page -->
@@ -171,22 +123,20 @@
                     <h3>Liens rapides</h3>
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/index">Accueil</a></li>
-                        <li><a href="${pageContext.request.contextPath}/salons">Salons</a></li>
                         <li><a href="${pageContext.request.contextPath}/services">Services</a></li>
-                        <li><a href="${pageContext.request.contextPath}/about">À propos</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Contact</h3>
-                    <ul>
-                        <li>Email: contact@coiffure-elegance.fr</li>
-                        <li>Téléphone: 01 23 45 67 89</li>
-                        <li>Adresse: 123 Avenue de la Beauté, Paris</li>
+                   <ul>
+                        <li>Email: contact@example.com</li>
+                        <li>Téléphone: 00 00 00 00 00 </li>
+                        <li>Adresse: 123 Avenue de la Beauté, Rabat</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Coiffure Élégance. Tous droits réservés.</p>
+                <p>&copy; 2025 Coiffure Élégance. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
