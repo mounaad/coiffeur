@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import model.Client;
 
+
 public class ClientDaoImp implements ClientDao {
 	
 	
@@ -71,6 +72,8 @@ public class ClientDaoImp implements ClientDao {
         }
         return client;
     }
+    
+
 
 	
 
