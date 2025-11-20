@@ -101,7 +101,7 @@ String dateAujourdhui = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
                             <input type="date" id="date" name="date" required min="<%= dateAujourdhui %>">
                         
                             <label for="heure">
-                                <i class="fas fa-clock"></i> Heure (entre 09:00 et 18:00) :
+                                <i class="fas fa-clock"></i> Heure (entre 09:00 et 23:00) :
                             </label>
                             <input type="time" id="heure" name="heure" required 
                                    min="09:00" max="18:00"

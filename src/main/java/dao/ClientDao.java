@@ -15,6 +15,7 @@ public interface ClientDao {
     boolean add(Client c);
     boolean update(Client c);
     boolean delete(int id);
+	public int countClients();
 	
 
 }

@@ -34,7 +34,7 @@ public class RendezVous {
 	        this.prix = prix; 
 	    }
 
-	    // Getters et setters
+	    
 	    public int getIdRdv() { return idRdv; }
 	    public int getIdClient() { return idClient; }
 	    public int getIdCoiffeur() { return idCoiffeur; }

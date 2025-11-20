@@ -223,5 +223,16 @@ public class CoiffeurDaoImpl implements CoiffeurDao {
 			}
 			return false;
 		}
+		
+		
+		public int countCoiffeurs() {
+		    String sql = "SELECT COUNT(*) FROM coiffeur";
+		    try (PreparedStatement ps = conn.prepareStatement(sql);
+		         ResultSet rs = ps.executeQuery()) {
+		        if (rs.next()) return rs.getInt(1);
+		    } catch (Exception e) { e.printStackTrace(); }
+		    return 0;
+		}
+
 	 
 }

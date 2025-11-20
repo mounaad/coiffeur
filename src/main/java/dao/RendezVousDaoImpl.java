@@ -31,10 +31,10 @@ public class RendezVousDaoImpl implements RendezVousDao {
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             rdvs.add(new RendezVous(
-                rs.getInt("id_rdv"),
+                rs.getInt("id_rdv"), 
                 rs.getInt("id_client"),
                 rs.getInt("id_coiffeur"),
-                rs.getDate("date_rdv"),
+                rs.getDate("date_rdv"), 
                 rs.getTime("heure_rdv"),
                 rs.getString("statut"),
                 rs.getString("nom"),

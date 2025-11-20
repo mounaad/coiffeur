@@ -11,12 +11,8 @@ public interface RendezVousDao {
 
     
     void confirmerRdv(int idRdv) throws SQLException;
-
-   
     void annulerRdv(int idRdv) throws SQLException;
-    
     public boolean addRendezvous(RendezVous rdv);
-    
     List<RendezVous> getRendezVousByClient(int idClient) throws SQLException;
 
 }

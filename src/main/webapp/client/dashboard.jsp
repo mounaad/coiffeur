@@ -124,7 +124,7 @@
                 <div class="dashboard-card">
                     <div class="card-header">
                         <div class="card-icon"><i class="fas fa-clock"></i></div>
-                        <h2 class="card-title">Mes rendez-vous à venir</h2>
+                        <h2 class="card-title">Mes rendez-vous </h2>
                     </div>
                     <c:choose>
     <c:when test="${not empty rdvs}">

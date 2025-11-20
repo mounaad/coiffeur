@@ -52,7 +52,7 @@ public class CoiffeurDashboardServlet extends HttpServlet {
 
 	        int coiffeurId = user.getId();
 
-	        try (Connection conn = Factory.getConnection()) { // connexion via Factory
+	        try (Connection conn = Factory.getConnection()) {
 	            RendezVousDao rdvDao = new RendezVousDaoImpl(conn);
 	            CoiffeurDaoImpl coiffDao = new CoiffeurDaoImpl(conn);
  

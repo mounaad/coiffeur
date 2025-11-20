@@ -24,7 +24,7 @@ public class Factory {
     private static String              password;
 
     Factory( String url, String username, String password ) {
-        Factory.url = url;
+        Factory.url = url; 
         Factory.username = username;
         Factory.password = password;
     }

@@ -147,16 +147,19 @@
         padding: 25px;
         box-shadow: 0 2px 15px rgba(0,0,0,0.08);
         text-align: center;
-        transition: transform 0.3s ease;
+        transition: all 0.3s ease;
+        border-top: 4px solid var(--burgundy);
     }
     
     .stat-card:hover {
         transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
     }
     
     .stat-icon {
         font-size: 2.5em;
         margin-bottom: 15px;
+        color: var(--burgundy);
     }
     
     .stat-number {
@@ -170,6 +173,74 @@
         color: var(--medium-brown);
         font-size: 0.9em;
         font-weight: 500;
+    }
+    
+    /* Cartes d'ajout */
+    .add-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+    
+    .add-card {
+        background: white;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        text-align: center;
+        transition: all 0.3s ease;
+        border-top: 4px solid var(--burgundy);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 180px;
+    }
+    
+    .add-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    }
+    
+    .add-card-icon {
+        font-size: 3em;
+        margin-bottom: 15px;
+        color: var(--burgundy);
+    }
+    
+    .add-card-title {
+        font-size: 1.3em;
+        font-weight: 600;
+        color: var(--dark-brown);
+        margin-bottom: 10px;
+        font-family: 'Georgia', 'Times New Roman', serif;
+    }
+    
+    .add-card-description {
+        color: var(--medium-brown);
+        font-size: 0.9em;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+    
+    .add-card-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: var(--burgundy);
+        color: var(--light-beige);
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        font-size: 0.95em;
+        border: 2px solid var(--burgundy);
+    }
+    
+    .add-card-btn:hover {
+        background: var(--dark-brown);
+        border-color: var(--dark-brown);
+        color: white;
     }
     
     /* Section des tableaux */
@@ -326,6 +397,10 @@
             grid-template-columns: 1fr;
         }
         
+        .add-cards-grid {
+            grid-template-columns: 1fr;
+        }
+        
         .action-buttons {
             flex-direction: column;
         }
@@ -404,113 +479,29 @@
                     <div class="stat-number">${totalCoiffeurs}</div>
                     <div class="stat-label">Coiffeurs</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon">📅</div>
-                    <div class="stat-number">${rdvAujourdhui}</div>
-                    <div class="stat-label">RDV Aujourd'hui</div>
+            </div>
+            
+            <!-- Cartes d'ajout -->
+            <div class="add-cards-grid">
+                <div class="add-card">
+                    <div class="add-card-icon">👤</div>
+                    <h3 class="add-card-title">Ajouter un Client</h3>
+                    <p class="add-card-description">Créez un nouveau profil client dans votre système</p>
+                    <a href="ajouterClient.jsp" class="add-card-btn">
+                        Ajouter un Client
+                    </a>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon">⭐</div>
-                    <div class="stat-number">${totalPoints}</div>
-                    <div class="stat-label">Points Fidélité</div>
+                
+                <div class="add-card">
+                    <div class="add-card-icon">✂️</div>
+                    <h3 class="add-card-title">Ajouter un Coiffeur</h3>
+                    <p class="add-card-description">Intégrez un nouveau coiffeur à votre équipe</p>
+                    <a href="ajouterCoiffeur.jsp" class="add-card-btn">
+                        Ajouter un Coiffeur
+                    </a>
                 </div>
             </div>
 
-            <!-- Section coiffeurs en attente -->
-            <div class="section">
-                <h3 class="section-title">Coiffeurs en Attente de Validation</h3>
-                
-                <c:choose>
-                    <c:when test="${not empty coiffeursEnAttente}">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Email</th>
-                                    <th>Téléphone</th>
-                                    <th>Statut</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="coiffeur" items="${coiffeursEnAttente}">
-                                    <tr>
-                                        <td><strong>${coiffeur.nom}</strong></td>
-                                        <td>${coiffeur.email}</td>
-                                        <td>${coiffeur.telephone}</td>
-                                        <td>
-                                            <span class="status-badge status-pending">En attente</span>
-                                        </td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <form method="post" style="display:inline">
-                                                    <input type="hidden" name="idCoiffeur" value="${coiffeur.id}"/>
-                                                    <button type="submit" name="action" value="valider" class="btn btn-validate">
-                                                        Valider
-                                                    </button>
-                                                </form>
-                                                <form method="post" style="display:inline">
-                                                    <input type="hidden" name="idCoiffeur" value="${coiffeur.id}"/>
-                                                    <button type="submit" name="action" value="rejeter" class="btn btn-delete">
-                                                        Rejeter
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </c:when>
-                    <c:otherwise>
-                        <div class="no-data">
-                            <h3>Aucun coiffeur en attente de validation</h3>
-                        </div>
-                    </c:otherwise>
-                </c:choose>
-            </div>
-
-            <!-- Section derniers clients -->
-            <div class="section">
-                <h3 class="section-title">Derniers Clients Inscrits</h3>
-                
-                <c:choose>
-                    <c:when test="${not empty derniersClients}">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Email</th>
-                                    <th>Téléphone</th>
-                                    <th>Date d'inscription</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="client" items="${derniersClients}">
-                                    <tr>
-                                        <td><strong>${client.nom} ${client.prenom}</strong></td>
-                                        <td>${client.email}</td>
-                                        <td>${client.telephone}</td>
-                                        <td>${client.dateInscription}</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-edit">Modifier</button>
-                                                <button class="btn btn-delete">Supprimer</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </c:when>
-                    <c:otherwise>
-                        <div class="no-data">
-                            <h3>Aucun client inscrit</h3>
-                        </div>
-                    </c:otherwise>
-                </c:choose>
-            </div>
         </main>
     </div>
 </body>

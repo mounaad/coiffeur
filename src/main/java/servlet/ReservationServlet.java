@@ -36,13 +36,7 @@ public class ReservationServlet extends HttpServlet {
         String date = request.getParameter("date");
         String heure = request.getParameter("heure");
         String coiffeurIdParam = request.getParameter("id_coiffeur");
-        
-        System.out.println("Paramètres reçus:");
-        System.out.println("  - Client ID: " + id_client);
-        System.out.println("  - Service ID: " + serviceIdParam);
-        System.out.println("  - Date: " + date);
-        System.out.println("  - Heure: " + heure);
-        System.out.println("  - Coiffeur ID: " + coiffeurIdParam);
+
         
         // Validation
         if (serviceIdParam == null || date == null || heure == null || coiffeurIdParam == null) {
