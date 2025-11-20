@@ -16,9 +16,7 @@
                 <nav>
                     <ul>
                         <li><a href="index.html">Accueil</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">À propos</a></li>
-                        <li><a href="#">Contact</a></li>
+                        
                     </ul>
                 </nav>
                 <div class="auth-buttons">
@@ -31,7 +29,9 @@
     String success = (String) session.getAttribute("success");
     if (success != null) {
 	%>
-        <div style="color: #80EF80 ; font-weight: bold;font-size: 24px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0 auto;">
+        <div style="color: #0d630d ; font-weight: bold;font-size: 24px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0 auto;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.3);S">
             <%= success %>
         </div>
 <%
@@ -79,15 +79,7 @@
                     <h3>Coiffure Élégance</h3>
                     <p>Simplifiez votre prise de rendez-vous chez le coiffeur avec notre plateforme intuitive.</p>
                 </div>
-                <div class="footer-column">
-                    <h3>Liens rapides</h3>
-                    <ul>
-                        <li><a href="${pageContext.request.contextPath}/index">Accueil</a></li>
-                        <li><a href="${pageContext.request.contextPath}/salons">Salons</a></li>
-                        <li><a href="${pageContext.request.contextPath}/services">Services</a></li>
-                        <li><a href="${pageContext.request.contextPath}/about">À propos</a></li>
-                    </ul>
-                </div>
+                
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul>

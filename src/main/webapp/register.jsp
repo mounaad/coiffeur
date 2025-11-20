@@ -158,9 +158,7 @@
                 <nav>
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/index">Accueil</a></li>
-                        <li><a href="${pageContext.request.contextPath}/salons">Salons</a></li>
-                        <li><a href="${pageContext.request.contextPath}/services">Services</a></li>
-                        <li><a href="${pageContext.request.contextPath}/about">À propos</a></li>
+
                     </ul>
                 </nav>
                 <div class="auth-buttons">
@@ -252,15 +250,7 @@
                     <h3>Coiffure Élégance</h3>
                     <p>Simplifiez votre prise de rendez-vous chez le coiffeur avec notre plateforme intuitive.</p>
                 </div>
-                <div class="footer-column">
-                    <h3>Liens rapides</h3>
-                    <ul>
-                        <li><a href="${pageContext.request.contextPath}/index">Accueil</a></li>
-                        <li><a href="${pageContext.request.contextPath}/salons">Salons</a></li>
-                        <li><a href="${pageContext.request.contextPath}/services">Services</a></li>
-                        <li><a href="${pageContext.request.contextPath}/about">À propos</a></li>
-                    </ul>
-                </div>
+                
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul>

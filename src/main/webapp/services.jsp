@@ -24,9 +24,7 @@
                 <div class="logo">Coiffure<span>Élégance</span></div>
                 <nav>
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/index">Accueil</a></li>
-                        <li><a href="${pageContext.request.contextPath}/salons">Salons</a></li>
-                        <li><a href="${pageContext.request.contextPath}/services">Services</a></li>
+                        
                         <li><a href="${pageContext.request.contextPath}/dashboard" class="active">Mon Compte</a></li>
                     </ul>
                 </nav>
@@ -83,21 +81,13 @@
                     <h3>Coiffure Élégance</h3>
                     <p>Simplifiez votre prise de rendez-vous chez le coiffeur avec notre plateforme intuitive.</p>
                 </div>
-                <div class="footer-column">
-                    <h3>Liens rapides</h3>
-                    <ul>
-                        <li><a href="${pageContext.request.contextPath}/index">Accueil</a></li>
-                        <li><a href="${pageContext.request.contextPath}/salons">Salons</a></li>
-                        <li><a href="${pageContext.request.contextPath}/services">Services</a></li>
-                        <li><a href="${pageContext.request.contextPath}/about">À propos</a></li>
-                    </ul>
-                </div>
+                
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul>
-                        <li>Email: contact@coiffure-elegance.fr</li>
-                        <li>Téléphone: 01 23 45 67 89</li>
-                        <li>Adresse: 123 Avenue de la Beauté, Paris</li>
+                       <li>Email: contact@example.com</li>
+                        <li>Téléphone: 00 00 00 00 00 </li>
+                        <li>Adresse: 123 Avenue de la Beauté, Rabat</li>
                     </ul>
                 </div>
             </div>
