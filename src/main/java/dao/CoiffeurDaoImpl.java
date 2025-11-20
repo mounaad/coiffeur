@@ -3,9 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import java.sql.SQLException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +16,7 @@ public class CoiffeurDaoImpl implements CoiffeurDao {
 	    public CoiffeurDaoImpl(Connection conn) {
 	        this.conn = conn;
 	    }
-
-
+	    
 	    @Override
 	    public Coiffeur getCoiffeurById(int id) {
 	    	String sql = "SELECT * FROM coiffeur WHERE id_coiffeur = ?";
@@ -46,7 +43,6 @@ public class CoiffeurDaoImpl implements CoiffeurDao {
 
 	        return null;
 	    }
-
 
 		@Override
 		public List<Coiffeur> getAll() {
@@ -77,7 +73,6 @@ public class CoiffeurDaoImpl implements CoiffeurDao {
 			return list;
 		}
 
-
 	 public List<Coiffeur> getCoiffeursDisponibles(int id_service, String date, String heure) {
 	     List<Coiffeur> list = new ArrayList<>();
 	     
@@ -86,7 +81,6 @@ public class CoiffeurDaoImpl implements CoiffeurDao {
 	         "FROM coiffeur c " +
 	         "JOIN coiffeur_service cs ON c.id_coiffeur = cs.id_coiffeur " +
 	         "WHERE cs.id_service = ?";
-	     
 	     
 	     PreparedStatement ps = null;
 	     ResultSet rs = null;
@@ -109,9 +103,7 @@ public class CoiffeurDaoImpl implements CoiffeurDao {
 	             
 	             list.add(c);
 	             
-	             
-	         }
-	         
+	         }  
 	         
 	     } catch (SQLException e) {
 	         
@@ -130,7 +122,7 @@ public class CoiffeurDaoImpl implements CoiffeurDao {
 
 	 /**
 	  * VERSION AVEC VÉRIFICATION DES DISPONIBILITÉS
-	  * À utiliser après avoir vérifié que la version simple fonctionne
+	  * 
 	  */
 	 public List<Coiffeur> getCoiffeursDisponiblesAvecVerif(int id_service, String date, String heure) {
 	     List<Coiffeur> list = new ArrayList<>();
@@ -181,7 +173,6 @@ public class CoiffeurDaoImpl implements CoiffeurDao {
 	     return list;
 	 }
 
-
 		@Override
 		public boolean add(Coiffeur c) {
 			String sql = "INSERT INTO coiffeur (nom,adresse,email,telephone,mot_de_passe,statut) VALUES(?,?,?,?,?,'valide') ";
@@ -193,8 +184,6 @@ public class CoiffeurDaoImpl implements CoiffeurDao {
 				ps.setString(4, c.getTelephone());
 				ps.setString(5, c.getMotDePasse());
 			
-
-				
 				return ps.executeUpdate() > 0;
 			}catch(Exception e) {
 				e.printStackTrace();

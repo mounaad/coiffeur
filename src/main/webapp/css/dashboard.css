@@ -514,4 +514,205 @@ footer {
     .data-table td {
         padding: 8px 10px;
     }
+    /* ========== CARTE FIDÉLITÉ ========== */
+.dashboard-card fidelite-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    margin-bottom: 30px;
+}
+
+.fidelite-card .card-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fidelite-card .card-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.fidelite-card .card-title {
+    color: white;
+}
+
+.fidelite-content {
+    padding: 20px;
+}
+
+/* Affichage des points */
+.points-display {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.points-number {
+    font-size: 72px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.points-label {
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+/* Barre de progression */
+.progress-section {
+    margin-bottom: 25px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+    opacity: 0.95;
+}
+
+.progress-text {
+    font-weight: 600;
+}
+
+.progress-bar {
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ffd700, #ffed4e);
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    font-weight: bold;
+    color: #667eea;
+    border-radius: 10px;
+}
+
+/* Réductions disponibles */
+.reductions-disponibles {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+}
+
+.reduction-badge {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.reduction-badge i {
+    font-size: 32px;
+    color: #ffd700;
+}
+
+.reduction-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 10px 0 0 0;
+}
+
+.reduction-info i {
+    color: #ffd700;
+}
+
+/* Info fidélité */
+.fidelite-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.fidelite-info i {
+    font-size: 40px;
+    color: #ffd700;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.fidelite-info p {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+/* Avantages */
+.fidelite-avantages {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.fidelite-avantages h3 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: white;
+}
+
+.fidelite-avantages ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fidelite-avantages li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.fidelite-avantages li i {
+    color: #ffd700;
+    font-size: 16px;
+}
+
+/* Animation d'entrée */
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fidelite-card {
+    animation: slideInFromLeft 0.5s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .points-number {
+        font-size: 56px;
+    }
+    
+    .reduction-badge {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
 }

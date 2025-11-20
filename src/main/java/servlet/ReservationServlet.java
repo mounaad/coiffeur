@@ -73,6 +73,7 @@ public class ReservationServlet extends HttpServlet {
             
             if (result > 0) {
                 request.setAttribute("message", "Votre rendez-vous a été réservé avec succès !");
+                
             } else {
                 request.setAttribute("error", "Erreur lors de la réservation");
             }
@@ -87,8 +88,8 @@ public class ReservationServlet extends HttpServlet {
             request.setAttribute("error", "Erreur système");
         }
         
-        // Redirection vers la page de réservation
-        request.getRequestDispatcher("/reservation.jsp").forward(request, response);
+        
+        response.sendRedirect(request.getContextPath() + "/client/dashboard");
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 

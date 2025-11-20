@@ -79,5 +79,40 @@ public class RendezVousDaoImpl implements RendezVousDao {
             return false;
         }
     }
+    
+    public List<RendezVous> getRendezVousByClient(int idClient) throws SQLException {
+        List<RendezVous> list = new ArrayList<>();
 
+        String sql = "SELECT r.id_rdv, r.date_rdv, r.heure_rdv, r.statut, " +
+                "s.nom_service AS service, s.prix " + // ← Ajout du prix
+                "FROM rendezvous r " +
+                "INNER JOIN service s ON r.id_service = s.id_service " +
+                "WHERE r.id_client = ? " +
+                "ORDER BY r.date_rdv DESC, r.heure_rdv DESC";
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, idClient);
+
+        try (ResultSet rs = ps.executeQuery()){
+
+        while (rs.next()) {
+            RendezVous r = new RendezVous();
+            r.setIdRdv(rs.getInt("id_rdv"));
+            r.setDateRdv(rs.getDate("date_rdv"));
+            r.setHeureRdv(rs.getTime("heure_rdv"));
+            r.setPrix(rs.getDouble("prix")); 
+            r.setNomService(rs.getString("service"));
+            r.setStatut(rs.getString("statut"));
+
+            list.add(r);
+        }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
 }
+
+
+

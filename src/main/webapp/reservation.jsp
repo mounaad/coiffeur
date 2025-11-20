@@ -132,7 +132,7 @@ String dateAujourdhui = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
                 <!-- Lien retour -->
                 <div style="text-align: center; margin-top: 20px;">
-                    <a href="${pageContext.request.contextPath}/client/dashboard.jsp" 
+                    <a href="${pageContext.request.contextPath}/client/dashboard" 
                        style="color: var(--burgundy); text-decoration: none;">
                         <i class="fas fa-arrow-left"></i> Retour au tableau de bord
                     </a>

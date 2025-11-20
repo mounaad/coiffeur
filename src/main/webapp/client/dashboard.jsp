@@ -45,9 +45,7 @@
                     </ul>
                 </nav>
                 <div class="auth-buttons">
-                    <span style="color: var(--light-beige); margin-right: 15px;">
-                        <i class="fas fa-bell"></i> <span class="notification-badge">2</span>
-                    </span>
+                    
                     <a href="${pageContext.request.contextPath}/logout">Déconnexion</a>
                 </div>
             </div>
@@ -72,43 +70,112 @@
 			</a>
 
             <!-- Grille principale -->
-            <div class="dashboard-grid">
-                
+            
+                <!-- Programme de fidélité -->
+<div class="dashboard-card fidelite-card">
+    <div class="card-header">
+        <div class="card-icon"><i class="fas fa-gift"></i></div>
+        <h2 class="card-title">Programme de Fidélité</h2>
+    </div>
+    
+    <div class="fidelite-content">
+        <div class="points-display">
+            <div class="points-number">Points : ${pointsFidelite}</div>
+            
+        </div>
+        
+        <div class="progress-section">
+            <div class="progress-info">
+                <span>Progression vers la prochaine réduction</span>
+                <span class="progress-text">${pointsFidelite % 100}/100 points</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: ${pourcentagePoints}%"></div>
+            </div>
+        </div>
+        
+        <c:if test="${reductionsDisponibles > 0}">
+            <div class="reductions-disponibles">
+                <div class="reduction-badge">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>${reductionsDisponibles} réduction(s) de 10% disponible(s)</span>
+                </div>
+                <p class="reduction-info">
+                    <i class="fas fa-info-circle"></i>
+                    Vos réductions seront automatiquement appliquées lors de votre prochain rendez-vous
+                </p>
+            </div>
+        </c:if>
+       
+        
+        <div class="fidelite-avantages">
+            <h3>Comment ça marche ?</h3>
+            
+                <h4><i class="fas fa-check-circle"></i> 10 points par rendez-vous confirmé</h4>
+                <h4><i class="fas fa-check-circle"></i> 100 points = 10% de réduction</h4>
+                <h4><i class="fas fa-check-circle"></i> Réductions cumulables</h4>
+                <h4><i class="fas fa-check-circle"></i> Pas de limite de temps</h4>
+            
+        </div>
+    </div>
+</div>
+               <div class="dashboard-grid">
                 <!-- Rendez-vous à venir -->
                 <div class="dashboard-card">
                     <div class="card-header">
                         <div class="card-icon"><i class="fas fa-clock"></i></div>
                         <h2 class="card-title">Mes rendez-vous à venir</h2>
                     </div>
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Heure</th>
-                                <th>Service</th>
-                                <th>Statut</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td colspan="5" class="empty-state">
-                                    <i class="fas fa-calendar-times"></i>
-                                    <p>Aucun rendez-vous pour le moment</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div style="text-align: center; margin-top: 15px;">
-                        <a href="#services" class="btn btn-primary">Prendre un rendez-vous</a>
-                    </div>
-                </div>
+                    <c:choose>
+    <c:when test="${not empty rdvs}">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Heure</th>
+                    <th>Service</th>
+                    <th>Prix</th>
+                    <th>Statut</th>
+                    
+                </tr>
+            </thead>
 
-                
+            <tbody>
+                <c:forEach var="rdv" items="${rdvs}">
+                    <tr>
+                        <td>${rdv.dateRdv}</td>
+                        <td>${rdv.heureRdv}</td>
+                        <td>${rdv.nomService}</td>
+                        <td>${rdv.prix} MAD</td>
+
+                        <td>
+                            <c:choose>
+                                <c:when test="${rdv.statut == 'en_attente'}">
+                                    <span class="statut statut-en_attente">En attente</span>
+                                </c:when>
+                                <c:when test="${rdv.statut == 'confirme'}">
+                                    <span class="statut statut-confirme">Confirmé</span>
+                                </c:when>
+                                <c:when test="${rdv.statut == 'annule'}">
+                                    <span class="statut statut-annule">Annulé</span>
+                                </c:when>
+                            </c:choose>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </c:when>
+
+    <c:otherwise>
+        <div class="no-data">
+            <h3>Aucun rendez-vous pour le moment</h3>
+        </div>
+    </c:otherwise>
+</c:choose>
+</div>
             </div>
-            
             </div>
-        
     </section>
 
     <!-- Pied de page -->
@@ -140,6 +207,7 @@
             </div>
         </div>
     </footer>
+    
 
 </body>
 </html>
