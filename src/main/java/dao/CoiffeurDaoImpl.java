@@ -16,10 +16,9 @@ public class CoiffeurDaoImpl implements CoiffeurDao {
 	 private Connection conn;
 
 	    public CoiffeurDaoImpl(Connection conn) {
-	        this.conn = conn;
+	        this.conn = conn; 
 	    }
-
-
+	    
 	    @Override
 	    public Coiffeur getCoiffeurById(int id) {
 	    	String sql = "SELECT * FROM coiffeur WHERE id_coiffeur = ?";
