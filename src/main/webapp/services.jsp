@@ -28,11 +28,7 @@
                         <li><a href="${pageContext.request.contextPath}/dashboard" class="active">Mon Compte</a></li>
                     </ul>
                 </nav>
-                <div class="auth-buttons">
-                    <span style="color: var(--light-beige); margin-right: 15px;">
-                        <i class="fas fa-bell"></i> <span class="notification-badge">2</span>
-                    </span>
-                </div>
+                
             </div>
         </div>
     </header>

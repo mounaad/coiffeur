@@ -9,17 +9,14 @@ import java.util.List;
 
 import model.Client;
 
-
 public class ClientDaoImp implements ClientDao {
 
 	 private Connection conn;
-
 	    public ClientDaoImp(Connection conn) {
 	        this.conn = conn; 
 	    }
 	
 	public ClientDaoImp() {
-			// TODO Auto-generated constructor stub
 		}
 
 	public boolean ajouterClient(Client client) {
@@ -39,7 +36,6 @@ public class ClientDaoImp implements ClientDao {
             success = stmt.executeUpdate() > 0;
 
         } catch (SQLException e) {
-        	System.err.println("Erreur dans ajouterClient : " + e.getMessage());
         	e.printStackTrace();        }
         return success;
     }
@@ -188,11 +184,5 @@ public class ClientDaoImp implements ClientDao {
 	    } catch (Exception e) { e.printStackTrace(); }
 	    return 0;
 	}
-
-	
-
-
-
-	
 
 }
