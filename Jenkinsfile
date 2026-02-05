@@ -9,7 +9,7 @@ pipeline {
 
         stage('Clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/mounaad/coiffeur.git'
+                git branch: 'devolop', url: 'https://github.com/mounaad/coiffeur.git'
             }
         }
 
