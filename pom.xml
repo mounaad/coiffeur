@@ -1,0 +1,8 @@
+<properties>
+ <sonar.projectKey>coiffeur</sonar.projectKey>
+ <sonar.projectName>Coiffeur Management System</sonar.projectName>
+ <sonar.host.url>http://localhost:9000</sonar.host.url>
+ <sonar.coverage.jacoco.xmlReportPaths>
+ ${project.build.directory}/site/jacoco/jacoco.xml
+ </sonar.coverage.jacoco.xmlReportPaths>
+</properties>
