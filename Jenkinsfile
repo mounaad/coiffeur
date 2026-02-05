@@ -9,7 +9,7 @@ pipeline {
 
         stage('Clone') {
             steps {
-                git branch: 'develop', url: 'https://github.com/akito-sama/cargo-tracker.git'
+                git branch: 'develop', url: 'https://github.com/mounaad/coiffeur.git'
             }
         }
 
@@ -25,7 +25,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('SonarQube Local') {
-                    bat """
+                    echo """
                         mvn sonar:sonar ^
                         -Dsonar.projectKey=cargo-tracker ^
                         -Dsonar.projectName="Cargo Tracker" ^
