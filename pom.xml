@@ -1,8 +1,31 @@
-<properties>
- <sonar.projectKey>coiffeur</sonar.projectKey>
- <sonar.projectName>Coiffeur Management System</sonar.projectName>
- <sonar.host.url>http://localhost:9000</sonar.host.url>
- <sonar.coverage.jacoco.xmlReportPaths>
- ${project.build.directory}/site/jacoco/jacoco.xml
- </sonar.coverage.jacoco.xmlReportPaths>
-</properties>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>coiffeur</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Coiffeur Project</name>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+
+        <!-- SonarQube properties -->
+        <sonar.projectKey>coiffeur</sonar.projectKey>
+        <sonar.projectName>Coiffeur Project</sonar.projectName>
+        <sonar.host.url>${env.SONAR_HOST_URL}</sonar.host.url>
+        <sonar.login>${env.SONAR_AUTH_TOKEN}</sonar.login>
+    </properties>
+
+    <dependencies>
+        <!-- Ajoute ici tes dépendances si nécessaire -->
+    </dependencies>
+
+</project>
