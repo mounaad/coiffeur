@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        githubPush()   
+        githubPush()  
     }
 
     stages {
@@ -12,7 +12,7 @@ pipeline {
                 git branch: 'develop', url: 'https://github.com/mounaad/coiffeur.git'
             }
         }
-        // Test for webhook
+       
 
         stage('Build & Test with Coverage') {
             steps {
@@ -20,23 +20,23 @@ pipeline {
             }
         }
 
-        /*stage('SonarQube Analysis') {
-            environment {
-                SONAR_TOKEN = credentials('sonar-token-id')
-            }
-            steps {
-                withSonarQubeEnv('SonarQube Local') {
-                    echo """
-                        mvn sonar:sonar ^
-                        -Dsonar.projectKey=cargo-tracker ^
-                        -Dsonar.projectName="Cargo Tracker" ^
-                        -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml ^
-                        -Dsonar.host.url=http://localhost:9000 ^
-                        -Dsonar.token=%SONAR_TOKEN%
-                    """
-                }
-            }
-        }*/
+        // stage('SonarQube Analysis') {
+        //     environment {
+        //         SONAR_TOKEN = credentials('sonar-token-id')
+        //     }
+        //     steps {
+        //         withSonarQubeEnv('SonarQube Local') {
+        //             bat """
+        //                 mvn sonar:sonar ^
+        //                 -Dsonar.projectKey=cargo-tracker ^
+        //                 -Dsonar.projectName="Cargo Tracker" ^
+        //                 -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml ^
+        //                 -Dsonar.host.url=http://localhost:9000 ^
+        //                 -Dsonar.token=%SONAR_TOKEN%
+        //             """
+        //         }
+        //     }
+        // }
     }
 //
     post {
