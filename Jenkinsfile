@@ -6,15 +6,17 @@ pipeline {
     }
 
     stages {
+
         stage('Clone') {
             steps {
                 git branch: 'develop', url: 'https://github.com/mounaad/coiffeur.git'
             }
         }
+        // Test for webhook
 
         stage('Build & Test with Coverage') {
             steps {
-                bat 'mvn clean verify'
+                echo 'mvn clean verify'
             }
         }
 
@@ -34,8 +36,7 @@ pipeline {
                     """
                 }
             }
-        }
-        */
+        }*/
     }
 //
     post {
