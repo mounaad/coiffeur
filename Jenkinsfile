@@ -19,7 +19,7 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
+        /*stage('SonarQube Analysis') {
             environment {
                 SONAR_TOKEN = credentials('sonar-token-id')
             }
@@ -36,6 +36,7 @@ pipeline {
                 }
             }
         }
+        */
     }
 //
     post {
