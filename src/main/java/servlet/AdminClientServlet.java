@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import dao.ClientDao;
 import dao.ClientDaoImp;
 import dao.Factory;
@@ -20,8 +19,8 @@ import model.Client;
  */
 @WebServlet("/admin/clients")
 public class AdminClientServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,11 +29,13 @@ public class AdminClientServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
 
         try (Connection conn = Factory.getConnection()) {
 
@@ -42,7 +43,7 @@ public class AdminClientServlet extends HttpServlet {
 
             if ("add".equals(action)) {
                 request.getRequestDispatcher("/admin/ajouterClient.jsp")
-                       .forward(request, response);
+                        .forward(request, response);
                 return;
             }
 
@@ -52,27 +53,28 @@ public class AdminClientServlet extends HttpServlet {
 
                 request.setAttribute("client", c);
                 request.getRequestDispatcher("/admin/modifierClient.jsp")
-                       .forward(request, response);
+                        .forward(request, response);
                 return;
             }
 
-            
             request.setAttribute("liste", dao.getAll());
             request.getRequestDispatcher("/admin/clients.jsp")
-                   .forward(request, response);
+                    .forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(500);
         }
 
-	}
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
 
         try (Connection conn = Factory.getConnection()) {
 
@@ -113,6 +115,6 @@ public class AdminClientServlet extends HttpServlet {
             e.printStackTrace();
             response.sendError(500);
         }
-	}
+    }
 
 }
