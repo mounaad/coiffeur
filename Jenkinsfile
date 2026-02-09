@@ -29,7 +29,7 @@ pipeline {
             bat """
                 mvn clean verify sonar:sonar ^
                 -Dsonar.projectKey=coiffeur ^
-                -Dsonar.projectName="coiffeur" ^
+                -Dsonar.projectName="Coiffeur Project" ^
                 -Dsonar.host.url=http://localhost:9000 ^
                 -Dsonar.token=%SONAR_TOKEN% ^
                 -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
