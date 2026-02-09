@@ -23,7 +23,13 @@ pipeline {
          stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                bat 'mvn sonar:sonar'
+                 bat '''
+                mvn sonar:sonar ^
+                  -Dsonar.projectKey=coiffeur ^
+                  -Dsonar.java.coveragePlugin=jacoco ^
+                  -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml ^
+                  -Dsonar.java.binaries=target/classes
+            '''
                 }
             }
         }
