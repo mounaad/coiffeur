@@ -21,18 +21,23 @@ pipeline {
         }
 
          stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                 bat '''
-                mvn sonar:sonar ^
-                  -Dsonar.projectKey=coiffeur ^
-                  -Dsonar.java.coveragePlugin=jacoco ^
-                  -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml ^
-                  -Dsonar.java.binaries=target/classes
-            '''
-                }
-            }
+    environment {
+        SONAR_TOKEN = credentials('sonar-token')
+    }
+    steps {
+        withSonarQubeEnv('SonarQube') {
+            bat """
+                mvn clean verify sonar:sonar ^
+                -Dsonar.projectKey=coiffeur ^
+                -Dsonar.projectName="coiffeur" ^
+                -Dsonar.host.url=http://localhost:9000 ^
+                -Dsonar.token=%SONAR_TOKEN% ^
+                -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+            """
         }
+    }
+}
+
 
     }
 //
