@@ -18,6 +18,12 @@ pipeline {
             steps {
                 echo 'mvn clean verify'
             }
+             post {
+        always {
+            junit '**/target/surefire-reports/*.xml'
+            jacoco execPattern: '**/target/jacoco.exec'
+        }
+    }
         }
 
 
