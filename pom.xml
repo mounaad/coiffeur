@@ -21,7 +21,7 @@
         <sonar.projectKey>coiffeur</sonar.projectKey>
         <sonar.projectName>Coiffeur Project</sonar.projectName>
         <sonar.host.url>${env.SONAR_HOST_URL}</sonar.host.url>
-        <sonar.login>${env.SONAR_AUTH_TOKEN}</sonar.login>
+        <sonar.token>${env.SONAR_AUTH_TOKEN}</sonar.token>
 
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.coverage.jacoco.xmlReportPaths>
