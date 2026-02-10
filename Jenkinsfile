@@ -20,14 +20,17 @@ pipeline {
             }
         }
 
+
+
          stage('SonarQube Analysis') {
     environment {
         SONAR_TOKEN = credentials('sonar-token')
     }
+
     steps {
         withSonarQubeEnv('SonarQube') {
             bat """
-                mvn clean verify sonar:sonar ^
+                mvn sonar:sonar ^
                 -Dsonar.projectKey=coiffeur ^
                 -Dsonar.projectName="Coiffeur Project" ^
                 -Dsonar.host.url=http://localhost:9000 ^
