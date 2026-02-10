@@ -18,12 +18,7 @@ pipeline {
             steps {
                 bat 'mvn clean verify'
             }
-             post {
-        always {
-            junit '**/target/surefire-reports/*.xml'
-            jacoco execPattern: '**/target/jacoco.exec'
-        }
-    }
+            
         }
 
 
@@ -41,7 +36,9 @@ pipeline {
                 -Dsonar.projectName="Coiffeur Project" ^
                 -Dsonar.host.url=http://localhost:9000 ^
                 -Dsonar.token=%SONAR_TOKEN% ^
-                -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+                -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml ^
+                -Dsonar.junit.reportPaths=target/surefire-reports ^
+                -Dsonar.java.coveragePlugin=jacoco 
             """
         }
     }
