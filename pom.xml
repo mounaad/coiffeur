@@ -8,8 +8,8 @@
 
     <groupId>com.example</groupId>
     <artifactId>coiffeur</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
 
     <name>Coiffeur Project</name>
 
