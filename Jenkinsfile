@@ -14,12 +14,36 @@ pipeline {
         }
        
 
-        stage('Build & Test with Coverage') {
-            steps {
-                bat 'mvn clean verify'
-            }
+        stage('Build & Test') {
+    steps {
+        echo 'Building and testing...'
+        bat '''
+            mvn clean verify
+            echo.
+            echo Checking JaCoCo report:
+            dir target\\site\\jacoco\\jacoco.xml
+        '''
+    }
+    post {
+        always {
+            junit '**/target/surefire-reports/*.xml'
+            jacoco execPattern: '**/target/jacoco.exec'
             
+            // Vérifier le contenu du rapport
+            script {
+                bat '''
+                    echo ====== JaCoCo Report Check ======
+                    if exist target\\site\\jacoco\\jacoco.xml (
+                        echo ✅ JaCoCo XML exists
+                        type target\\site\\jacoco\\jacoco.xml | find /c "counter"
+                    ) else (
+                        echo ❌ JaCoCo XML NOT FOUND
+                    )
+                '''
+            }
         }
+    }
+}
 
 
 
