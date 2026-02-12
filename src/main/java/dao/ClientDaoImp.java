@@ -186,8 +186,10 @@ public class ClientDaoImp implements ClientDao {
                 ResultSet rs = ps.executeQuery()) {
             if (rs.next())
                 return rs.getInt(1);
-        } catch (SQLException e) {
-        throw new RuntimeException("Unable to get database connection", e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
 }
