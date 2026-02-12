@@ -120,8 +120,13 @@ public class AdminClientServlet extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendError(500);
+            try {
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace(); // ou mieux : logger
+            }
         }
+
     }
 
 }

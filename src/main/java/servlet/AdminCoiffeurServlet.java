@@ -32,6 +32,7 @@ public class AdminCoiffeurServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		try (Connection conn = Factory.getConnection()) {
@@ -52,13 +53,19 @@ public class AdminCoiffeurServlet extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendError(500);
+            try {
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace(); // ou mieux : logger
+            }
         }
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 String action = request.getParameter("action");
 
@@ -99,7 +106,11 @@ public class AdminCoiffeurServlet extends HttpServlet {
 
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	            response.sendError(500);
+	            try {
+	                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+	            } catch (IOException ioException) {
+	                ioException.printStackTrace(); // ou mieux : logger
+	            }
 	        }
 	}
 
