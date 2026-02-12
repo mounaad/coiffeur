@@ -26,7 +26,6 @@ public class AdminClientServlet extends HttpServlet {
      */
     public AdminClientServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**

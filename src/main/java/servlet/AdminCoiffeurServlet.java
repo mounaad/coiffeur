@@ -20,98 +20,93 @@ import model.Coiffeur;
 @WebServlet("/admin/coiffeurs")
 public class AdminCoiffeurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminCoiffeurServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
+	public AdminCoiffeurServlet() {
+		super();
+	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String action = request.getParameter("action");
 		try (Connection conn = Factory.getConnection()) {
 
-            CoiffeurDao dao = new CoiffeurDaoImpl(conn);
-            if ("update".equals(action)) {
-                int id = Integer.parseInt(request.getParameter("id"));
-                Coiffeur c = dao.getCoiffeurById(id);
+			CoiffeurDao dao = new CoiffeurDaoImpl(conn);
+			if ("update".equals(action)) {
+				int id = Integer.parseInt(request.getParameter("id"));
+				Coiffeur c = dao.getCoiffeurById(id);
 
-                request.setAttribute("coiffeur", c);
-                request.getRequestDispatcher("/admin/modifierCoiffeur.jsp").forward(request, response);
-                return;
-            }
+				request.setAttribute("coiffeur", c);
+				request.getRequestDispatcher("/admin/modifierCoiffeur.jsp").forward(request, response);
+				return;
+			}
 
-            request.setAttribute("liste", dao.getAll());
+			request.setAttribute("liste", dao.getAll());
 
-            request.getRequestDispatcher("/admin/coiffeurs.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/coiffeurs.jsp").forward(request, response);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            } catch (IOException ioException) {
-                ioException.printStackTrace(); // ou mieux : logger
-            }
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			} catch (IOException ioException) {
+				ioException.printStackTrace(); // ou mieux : logger
+			}
+		}
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String action = request.getParameter("action");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String action = request.getParameter("action");
 
-	        try (Connection conn = Factory.getConnection()) {
+		try (Connection conn = Factory.getConnection()) {
 
-	            CoiffeurDao dao = new CoiffeurDaoImpl(conn);
+			CoiffeurDao dao = new CoiffeurDaoImpl(conn);
 
-	            if ("add".equals(action)) {
+			if ("add".equals(action)) {
 
-	                Coiffeur c = new Coiffeur();
-	                c.setNom(request.getParameter("nom"));
-	                c.setAdresse(request.getParameter("adresse"));
-	                c.setEmail(request.getParameter("email"));
-	                c.setTelephone(request.getParameter("telephone"));
-	                c.setMotDePasse(request.getParameter("mot_de_passe"));
+				Coiffeur c = new Coiffeur();
+				c.setNom(request.getParameter("nom"));
+				c.setAdresse(request.getParameter("adresse"));
+				c.setEmail(request.getParameter("email"));
+				c.setTelephone(request.getParameter("telephone"));
+				c.setMotDePasse(request.getParameter("mot_de_passe"));
 
-	                dao.add(c);
-	            }
+				dao.add(c);
+			}
 
-	            if ("update".equals(action)) {
-	                Coiffeur c = new Coiffeur();
+			if ("update".equals(action)) {
+				Coiffeur c = new Coiffeur();
 
-	                c.setIdCoiffeur(Integer.parseInt(request.getParameter("id")));
-	                c.setNom(request.getParameter("nom"));
-	                c.setAdresse(request.getParameter("adresse"));
-	                c.setEmail(request.getParameter("email"));
-	                c.setTelephone(request.getParameter("telephone"));
+				c.setIdCoiffeur(Integer.parseInt(request.getParameter("id")));
+				c.setNom(request.getParameter("nom"));
+				c.setAdresse(request.getParameter("adresse"));
+				c.setEmail(request.getParameter("email"));
+				c.setTelephone(request.getParameter("telephone"));
 
-	                dao.update(c);
-	            }
+				dao.update(c);
+			}
 
-	            if ("delete".equals(action)) {
-	                int id = Integer.parseInt(request.getParameter("id"));
-	                dao.delete(id);
-	            }
+			if ("delete".equals(action)) {
+				int id = Integer.parseInt(request.getParameter("id"));
+				dao.delete(id);
+			}
 
-	            response.sendRedirect(request.getContextPath() + "/admin/coiffeurs");
+			response.sendRedirect(request.getContextPath() + "/admin/coiffeurs");
 
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	            try {
-	                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-	            } catch (IOException ioException) {
-	                ioException.printStackTrace(); // ou mieux : logger
-	            }
-	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			} catch (IOException ioException) {
+				ioException.printStackTrace(); // ou mieux : logger
+			}
+		}
 	}
 
 }
