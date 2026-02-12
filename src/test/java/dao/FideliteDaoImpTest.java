@@ -85,7 +85,6 @@ class FideliteDaoImpTest {
         dao.ajouterPoints(1, 10);
         verify(updatePs, times(1)).executeUpdate();
     }
-
     @Test
     void testUtiliserReduction() throws Exception {
         PreparedStatement updatePs = mock(PreparedStatement.class);

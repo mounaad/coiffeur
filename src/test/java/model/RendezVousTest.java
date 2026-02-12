@@ -12,7 +12,6 @@ class RendezVousTest {
     void testConstructorAndGetters() {
         Date date = Date.valueOf("2024-01-01");
         Time time = Time.valueOf("10:00:00");
-
         RendezVous r = new RendezVous(
                 1, 2, 3,
                 date, time,

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class CoiffeurTest {
-
     @Test
     void testConstructeurEtGetters() {
         Coiffeur c = new Coiffeur(1, "Ali", "Rabat", "ali@mail.com",

@@ -7,7 +7,6 @@ import javax.servlet.http.*;
 import org.junit.jupiter.api.Test;
 
 class CoiffeurDashboardServletTest {
-
     @Test
     void testDoGetSansUtilisateur() throws Exception {
         CoiffeurDashboardServlet servlet = new CoiffeurDashboardServlet();

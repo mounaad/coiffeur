@@ -23,7 +23,6 @@ class FideliteTest {
         assertEquals(date, f.getDateOperation());
         assertEquals("Test fidélité", f.getDescription());
     }
-
     @Test
     void testSetters() {
         Fidelite f = new Fidelite();

@@ -11,12 +11,10 @@ import org.junit.jupiter.api.Test;
 import model.Coiffeur;
 
 class CoiffeurDaoImpTest {
-
     private Connection conn;
     private PreparedStatement ps;
     private ResultSet rs;
     private CoiffeurDaoImpl dao;
-
     @BeforeEach
     void setup(){
         conn = mock(Connection.class);
@@ -25,7 +23,6 @@ class CoiffeurDaoImpTest {
 
         dao = new CoiffeurDaoImpl(conn);
     }
-
     @Test
     void testGetCoiffeurById() throws Exception {
         when(conn.prepareStatement(anyString())).thenReturn(ps);
