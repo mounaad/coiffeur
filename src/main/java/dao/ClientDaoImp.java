@@ -37,7 +37,7 @@ public class ClientDaoImp implements ClientDao {
             success = stmt.executeUpdate() > 0;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Unable to get database connection", e);
         }
         return success;
     }
@@ -50,9 +50,8 @@ public class ClientDaoImp implements ClientDao {
             ResultSet rs = stmt.executeQuery();
             return rs.next();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Unable to get database connection", e);
         }
-        return false;
     }
 
     public Client getClienttById(int id) {
@@ -75,7 +74,7 @@ public class ClientDaoImp implements ClientDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Unable to get database connection", e);
         }
         return c;
     }
@@ -99,7 +98,7 @@ public class ClientDaoImp implements ClientDao {
                         rs.getString("mot_de_passe"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Unable to get database connection", e);
         }
         return client;
     }
@@ -122,8 +121,9 @@ public class ClientDaoImp implements ClientDao {
                 list.add(c);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException("Unable to get database connection", e);
+
         }
 
         return list;
@@ -142,11 +142,9 @@ public class ClientDaoImp implements ClientDao {
 
             return ps.executeUpdate() > 0;
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException("Unable to get database connection", e);
         }
-
-        return false;
 
     }
 
@@ -162,11 +160,11 @@ public class ClientDaoImp implements ClientDao {
             ps.setInt(5, c.getId());
             return ps.executeUpdate() > 0;
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException("Unable to get database connection", e);
+
         }
 
-        return false;
     }
 
     @Override
@@ -177,11 +175,9 @@ public class ClientDaoImp implements ClientDao {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException("Unable to get database connection", e);
         }
-
-        return false;
     }
 
     public int countClients() {
@@ -190,10 +186,8 @@ public class ClientDaoImp implements ClientDao {
                 ResultSet rs = ps.executeQuery()) {
             if (rs.next())
                 return rs.getInt(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
+        } catch (SQLException e) {
+        throw new RuntimeException("Unable to get database connection", e);
     }
 
 }
